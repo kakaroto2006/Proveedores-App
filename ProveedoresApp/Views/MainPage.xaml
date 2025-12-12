@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ProveedoresApp.ViewModels"
+             x:Class="ProveedoresApp.Views.MainPage"
+             Title="Proveedores">
+
+  <ContentPage.BindingContext>
+    <vm:ProveedoresViewModel />
+  </ContentPage.BindingContext>
+
+  <StackLayout Padding="20" Spacing="12">
+    <Label Text="Gestión de Proveedores" FontSize="24" HorizontalOptions="Center" />
+    <StackLayout Orientation="Horizontal" Spacing="8">
+      <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+      <Entry Placeholder="Teléfono" Text="{Binding Telefono}" />
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Spacing="8">
+      <Entry Placeholder="Email" Text="{Binding Email}" />
+      <Entry Placeholder="Ciudad" Text="{Binding Ciudad}" />
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Spacing="8">
+      <Entry Placeholder="RUC" Text="{Binding Ruc}" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Spacing="8">
+      <Button Text="Agregar" Command="{Binding AddCommand}" />
+      <Button Text="Actualizar" Command="{Binding UpdateCommand}" />
+      <Button Text="Eliminar" Command="{Binding DeleteCommand}" />
+      <Button Text="Limpiar" Command="{Binding ClearCommand}" />
+    </StackLayout>
+
+    <CollectionView ItemsSource="{Binding Proveedores}" SelectionMode="Single" SelectedItem="{Binding SelectedProveedor}">
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <Frame Padding="8" Margin="4" BorderColor="LightGray" CornerRadius="8">
+            <StackLayout>
+              <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+              <Label Text="{Binding Telefono}" />
+              <Label Text="{Binding Email}" />
+              <Label Text="{Binding Ciudad}" />
+            </StackLayout>
+          </Frame>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+
+  </StackLayout>
+</ContentPage>
